@@ -2,12 +2,12 @@ const Welcome = ({username, totalHabits}) => {
     const nameFormatted = username.toUpperCase()
 
     const message = totalHabits > 0
-    ? `Você tem ${totalHabits} hábito(s) cadastrado(s).`
-    : 'Nenhum hábito cadastrado ainda. Que tal começar?'
+    ? `You have ${totalHabits} registered habit(s).`
+    : 'No habits registered yet. How about starting now?'
 
     return(
-        <div>
-            <h2>Olá, {nameFormatted}!</h2>
+        <div className="welcome">
+            <h2>Hello, {nameFormatted}!</h2>
             <p>{message}</p>
         </div>
     )

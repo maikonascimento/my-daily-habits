@@ -1,8 +1,8 @@
-function Header ({ titulo, descricao }) {
+function Header ({ title, description }) {
     return (
         <div>
-            <h1>{titulo}</h1>
-            <p>{descricao}</p>
+            <h1>{title}</h1>
+            <p>{description}</p>
         </div>
     )
 }
