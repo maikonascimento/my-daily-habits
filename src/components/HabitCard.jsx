@@ -1,4 +1,4 @@
-function HabitCard ({ name, description = '', meta, active = true, daysDones = 0, onRemove}){
+function HabitCard ({ name, description = '', category = 'General', meta, active = true, daysDones = 0, onRemove}){
     const metaAccomplished = daysDones >= meta
 
     const messageMeta = metaAccomplished
@@ -9,8 +9,9 @@ function HabitCard ({ name, description = '', meta, active = true, daysDones = 0
         <div className="habitCard">
             <h3>{name}</h3>
             {description && <p>{description}</p>}
+            <p>Category: {category}</p>
             <p>{messageMeta}</p>
-            <span>{active ? '✅ Active' : '⏸️ Paused'}</span>
+            <p>{active ? '✅ Active' : '⏸️ Paused'}</p>
             {metaAccomplished && <p>⭐ Congratulations! You kept the sequence this week!</p>}
 
             {/* onRemover: só aparece se o pai passar essa prop */}
