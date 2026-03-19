@@ -1,9 +1,11 @@
 import { useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import HabitCard from './HabitCard'
 import { useHabits } from '../contexts/HabitsContext'
 
 function HabitList() {
     const { habits, addHabit, removeHabit } = useHabits()
+    const navigate = useNavigate()
 
     const [form, setForm] = useState({
         newName: '',
@@ -48,7 +50,7 @@ function HabitList() {
         addHabit(newHabit)
         setForm({  newName: '', newDescription: '', newCategory: '', newMeta: '7' })
         setErrorName('')
-        nameInputRef.current?.focus()
+        navigate('/habits')
     }
 
 
@@ -95,7 +97,7 @@ function HabitList() {
                 </div>
                 <div>
                     <label>
-                    Meta (Days by week)
+                    Weekly Meta (Days)
                         <input
                             type="number"
                             name="newMeta"
@@ -118,6 +120,7 @@ function HabitList() {
           {habits.map((habit) =>(
             <HabitCard
                 key={habit.id}
+                id={habit.id}
                 name={habit.name}
                 description={habit.description}
                 category={habit.category}

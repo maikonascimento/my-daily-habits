@@ -1,25 +1,40 @@
-function HabitCard ({ name, description = '', category = 'General', meta, active = true, daysDones = 0, onRemove}){
+import { Link } from "react-router-dom"
+
+function HabitCard ({ id, name, description, meta, active = true, daysDones = 0, category = 'General', onRemove}){
     const metaAccomplished = daysDones >= meta
 
-    const messageMeta = metaAccomplished
-    ? '🏆 Week meta accomplished!'
-    : `${daysDones} of ${meta} days concluded`
-
-    return (
+    return(
         <div className="habitCard">
-            <h3>{name}</h3>
-            {description && <p>{description}</p>}
-            <p>Category: {category}</p>
-            <p>{messageMeta}</p>
-            <p>{active ? '✅ Active' : '⏸️ Paused'}</p>
+            <div className="habitCard-header">
+                <h3>{name}</h3>
+                <span style={{color: active ? '#16a34a' : '#9ca3af'}}>
+                    {active ? '✅ Ativo' : '⏸️ Pausado'}
+                </span>
+            </div>
+
+            <p>{description}</p>
+            <small>Category: {category}</small>
+
+            <p>
+                {metaAccomplished
+                    ? '🏆 Weekly meta accomplished!'
+                    : `${daysDones} of ${meta} days concluded`
+                }
+            </p>
+
             {metaAccomplished && <p>⭐ Congratulations! You kept the sequence this week!</p>}
 
-            {/* onRemover: só aparece se o pai passar essa prop */}
-            {onRemove && (
-                <button type="button" onClick={onRemove}>
-                    Remove
-                </button>
-            )}
+            <div className="habitCard-acoes">
+                <Link to={`/habit/${id}`} className="btn-detail">
+                    See details
+                </Link>
+
+                {onRemove && (
+                    <button onClick={onRemove} className="btn-remove-card">
+                        Remove
+                    </button>
+                )}
+            </div>
         </div>
     )
 }
