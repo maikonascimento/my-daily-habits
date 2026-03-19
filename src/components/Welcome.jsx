@@ -1,16 +1,16 @@
-const Welcome = ({username, totalHabits}) => {
-    const nameFormatted = username.toUpperCase()
+import { useHabits } from "../contexts/HabitsContext"
 
-    const message = totalHabits != null 
-        ? (totalHabits > 0 
-            ? `You have ${totalHabits} registered habit(s).`
-            : 'No habits registered yet. How about starting now?')
-        : 'Welcome to My Daily Habits!'
+const Welcome = ({ username }) => {
+    const { habits } = useHabits()
+
+    const totalHabits = habits.length
+    const habitsActives = habits.filter(h => h.ativo).length
 
     return(
-        <div style={{ textAlgin: 'center' }}>
-            <h2>Hello, {nameFormatted}!</h2>
-            <p>{message}</p>
+        <div>
+            <h2>Hello, {username.toUpperCase()}!</h2>
+            <p>You have <strong>{totalHabits}</strong> habit(s) added(s).</p>
+            <p><strong>{habitsActives}</strong> active(s) in moment.</p>
         </div>
     )
 }
